@@ -16,9 +16,9 @@ class ViewController: UIViewController {
     lazy var bleShield = (UIApplication.shared.delegate as! AppDelegate).bleShield
     var rssiTimer = Timer()
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var labelText: UILabel!
-    @IBOutlet weak var textBox: UITextField!
-    @IBOutlet weak var rssiLabel: UILabel!
+    @IBOutlet weak var brightnessLabel: UILabel!
+    @IBOutlet weak var ledLabel: UILabel!
+    @IBOutlet weak var photoresLabel: UILabel!
     @IBOutlet var deviceNameLabel: UILabel!
     
     override func viewDidLoad() {
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     func readRSSITimer(timer:Timer){
         bleShield.readRSSI { (number, error) in
             // when RSSI read is complete, display it
-            self.rssiLabel.text = String(format: "%.1f",(number?.floatValue)!)
+           //self.rssiLabel.text = String(format: "%.1f",//(number?.floatValue)!)
         }
     }
     
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
     func bleDidReceiveData(data: Data?) {
         // this data could be anything, here we know its an encoded string
         let s = String(bytes: data!, encoding: String.Encoding.utf8)
-        labelText.text = s
+        //labelText.text = s
         
     }
     
@@ -109,7 +109,7 @@ class ViewController: UIViewController {
     @objc func onBLEDidRecieveDataNotification(notification:Notification){
         let d = notification.userInfo?["data"] as! Data?
         let s = String(bytes: d!, encoding: String.Encoding.utf8)
-        self.labelText.text = s
+        //self.labelText.text = s
     }
     
     // MARK: User initiated Functions
@@ -147,15 +147,28 @@ class ViewController: UIViewController {
     func connectTimer(timer:Timer){
         
     }
-    
-    // MARK: CHANGE: this function only needs a name change, the BLE writing does not change
-    @IBAction func sendDataButton(_ sender: UIButton) {
-        
-        let s = textBox.text!
+    @IBAction func changeBrightness(_ sender: UISlider) {
+        let s = String(sender.value)
         let d = s.data(using: String.Encoding.utf8)!
         bleShield.write(d)
-        // if (self.textField.text.length > 16)
+        
+        self.brightnessLabel.text = String(sender.value)
     }
+    @IBAction func changeLED(_ sender: UISlider) {
+        let s = String(sender.value * 10)
+        let d = s.data(using: String.Encoding.utf8)!
+        bleShield.write(d)
+        
+        self.ledLabel.text = String(sender.value)
+    }
+    @IBAction func changePhotoRes(_ sender: UISlider) {
+        let s = String(sender.value * 10)
+        let d = s.data(using: String.Encoding.utf8)!
+        bleShield.write(d)
+        
+        self.photoresLabel.text = String(sender.value)
+    }
+    
     
 }
 
