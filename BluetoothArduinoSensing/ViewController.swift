@@ -156,6 +156,7 @@ class ViewController: UIViewController {
         
         self.brightnessLabel.text = String(Int(sender.value)) + "%"
     }
+    
     @IBAction func changeLED(_ sender: UISlider) {
         var instruct_arr = [uint_fast8_t]()
         instruct_arr.append(uint_fast8_t(2))
@@ -165,6 +166,7 @@ class ViewController: UIViewController {
         
         self.ledLabel.text = String(Int(sender.value) * 10) + "ms"
     }
+
     @IBAction func changePhotoRes(_ sender: UISlider) {
         var instruct_arr = [uint_fast8_t]()
         instruct_arr.append(uint_fast8_t(3))

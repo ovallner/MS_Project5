@@ -78,7 +78,7 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="122" minValue="5" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="Fh7-UY-yme">
                                 <rect key="frame" x="63" y="592" width="249" height="31"/>
                                 <connections>
-                                    <action selector="changePhotoRes:" destination="8ss-rr-rj5" eventType="valueChanged" id="5WJ-Rm-ggg"/>
+                                    <action selector="changePhotoRes:" destination="8ss-rr-rj5" eventType="touchUpInside" id="aXw-2Y-cr7"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="122" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="ziC-rN-Fo6">
@@ -90,7 +90,7 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xXl-9u-Ygp">
                                 <rect key="frame" x="63" y="365" width="249" height="31"/>
                                 <connections>
-                                    <action selector="changeBrightness:" destination="8ss-rr-rj5" eventType="valueChanged" id="pFi-Jk-X8z"/>
+                                    <action selector="changeBrightness:" destination="8ss-rr-rj5" eventType="touchUpInside" id="YwK-RY-Icj"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Brightness" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VU-y7-H16">
