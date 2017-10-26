@@ -148,25 +148,31 @@ class ViewController: UIViewController {
         
     }
     @IBAction func changeBrightness(_ sender: UISlider) {
-        let s = String(sender.value)
-        let d = s.data(using: String.Encoding.utf8)!
-        bleShield.write(d)
+        var instruct_arr = [uint_fast8_t]()
+        instruct_arr.append(uint_fast8_t(1))
+        instruct_arr.append(uint_fast8_t(sender.value * 2.55))
+        let my_data = Data(instruct_arr)
+        bleShield.write(my_data)
         
-        self.brightnessLabel.text = String(sender.value)
+        self.brightnessLabel.text = String(Int(sender.value)) + "%"
     }
     @IBAction func changeLED(_ sender: UISlider) {
-        let s = String(sender.value * 10)
-        let d = s.data(using: String.Encoding.utf8)!
-        bleShield.write(d)
+        var instruct_arr = [uint_fast8_t]()
+        instruct_arr.append(uint_fast8_t(2))
+        instruct_arr.append(uint_fast8_t(sender.value))
+        let my_data = Data(instruct_arr)
+        bleShield.write(my_data)
         
-        self.ledLabel.text = String(sender.value)
+        self.ledLabel.text = String(Int(sender.value) * 10) + "ms"
     }
     @IBAction func changePhotoRes(_ sender: UISlider) {
-        let s = String(sender.value * 10)
-        let d = s.data(using: String.Encoding.utf8)!
-        bleShield.write(d)
+        var instruct_arr = [uint_fast8_t]()
+        instruct_arr.append(uint_fast8_t(3))
+        instruct_arr.append(uint_fast8_t(sender.value))
+        let my_data = Data(instruct_arr)
+        bleShield.write(my_data)
         
-        self.photoresLabel.text = String(sender.value)
+        self.photoresLabel.text = String(Int(sender.value) * 10) + "ms"
     }
     
     
