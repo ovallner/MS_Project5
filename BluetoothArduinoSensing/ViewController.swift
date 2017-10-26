@@ -100,7 +100,6 @@ class ViewController: UIViewController {
     // OLD FUNCTION: parse the received data using BLEDelegate protocol
     func bleDidReceiveData(data: Data?) {
         // this data could be anything, here we know its an encoded string
-        let s = String(bytes: data!, encoding: String.Encoding.utf8)
         //labelText.text = s
         
     }
@@ -109,6 +108,7 @@ class ViewController: UIViewController {
     @objc func onBLEDidRecieveDataNotification(notification:Notification){
         let d = notification.userInfo?["data"] as! Data?
         let s = String(bytes: d!, encoding: String.Encoding.utf8)
+        print(String(format: "%2X %2X %2X", d![0], d![1], d![2]))
         //self.labelText.text = s
     }
     
