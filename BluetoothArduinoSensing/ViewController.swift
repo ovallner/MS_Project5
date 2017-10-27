@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     // MARK: VC Properties
     lazy var bleShield = (UIApplication.shared.delegate as! AppDelegate).bleShield
     lazy var rssiTimer = Timer()
+    lazy var valuesList = NSMutableArray()
+    lazy var deltasList = NSMutableArray()
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var brightnessLabel: UILabel!
     @IBOutlet var brightnessTextLabel: UILabel!
@@ -23,6 +26,8 @@ class ViewController: UIViewController {
     @IBOutlet var brightnessSlider: UISlider!
     @IBOutlet var photoresTextLabel: UILabel!
     @IBOutlet var prPollingRateSlider: UISlider!
+    @IBOutlet weak var lineChart: LineChartView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +50,14 @@ class ViewController: UIViewController {
                                                name: NSNotification.Name(rawValue: kBleReceivedDataNotification),
                                                object: nil)
         self.spinner.startAnimating()
+        
+        self.lineChart.xAxis.axisMinimum = 0.0
+        self.lineChart.xAxis.axisMaximum = 10000.0
+        self.lineChart.xAxis.drawLabelsEnabled = false
+        self.lineChart.rightAxis.drawLabelsEnabled = false
+        self.lineChart.setScaleEnabled(true)
+        self.lineChart?.chartDescription?.text = "Photoresistor Values"
+        lineChartUpdate()
     }
     
     // Lesson Learned: Must remove observer, or else the BleReceivedDataNotification selector will be called
@@ -85,9 +98,12 @@ class ViewController: UIViewController {
 
     @objc func onBLEDidRecieveDataNotification(notification:Notification){
         if let msg = notification.userInfo?["data"] as! Data?{
-            print("=========" + String(format: "%2X %2X %2X", msg[0], msg[1], msg[2]))
             if(msg[0] == 0x01){ //photoresistor value update
                 let photoResistorRaw:uint = uint(msg[1]) << 8 + uint(msg[2])
+                var photoResistorTimeDelta:uint = uint(msg[3])<<24
+                photoResistorTimeDelta += uint(msg[4])<<16
+                photoResistorTimeDelta += uint(msg[5])<<8
+                photoResistorTimeDelta += uint(msg[6])
                 if(photoResistorRaw > 3500){
                     self.view.backgroundColor = UIColor.white
                     self.deviceNameLabel.textColor = UIColor.black
@@ -106,13 +122,15 @@ class ViewController: UIViewController {
                     self.photoresTextLabel.textColor = UIColor.white
                     
                 }
-                print("photoResistorRaw " + String(photoResistorRaw))
+                self.valuesList.add(photoResistorRaw)
+                self.deltasList.add(photoResistorTimeDelta)
+                self.lineChartUpdate()
             }
             else if(msg[0] == 0x02){ //Updated LED Value
                 let ledValueRaw = msg[1]
                 self.brightnessSlider.value = ((Float(ledValueRaw)/255.0)*100).rounded()
                 self.brightnessLabel.text = String(Int(self.brightnessSlider.value)) + "%"
-                print("ledValueRaw " + String(ledValueRaw))
+
             }
             else{
                 print("Unable to handle message with header: " + String(format: "%2X", msg[0]))
@@ -126,7 +144,6 @@ class ViewController: UIViewController {
         instruct_arr.append(uint_fast8_t(sender.value * 2.55))
         let my_data = Data(instruct_arr)
         bleShield.write(my_data)
-        
         self.brightnessLabel.text = String(Int(sender.value)) + "%"
     }
 
@@ -146,7 +163,6 @@ class ViewController: UIViewController {
             bleShield.write(my_data)
             self.photoresLabel.text = "Off"
         }
-        
     }
 
     @IBAction func pollLEDButtonPressed(_ sender: UIButton) {
@@ -154,6 +170,32 @@ class ViewController: UIViewController {
         instruct_arr.append(uint_fast8_t(0x02))
         let my_data = Data(instruct_arr)
         bleShield.write(my_data)
+    }
+    
+    func lineChartUpdate(){
+        var lineChartEntry = [ChartDataEntry]()
+        let max = 10000
+        var sumDeltas = 0
+        for idx in (0 ..< self.valuesList.count).reversed(){
+            sumDeltas += self.deltasList.object(at: idx) as! Int
+            if(sumDeltas<max){
+                print("sumdeltas: " + String(sumDeltas))
+                lineChartEntry.append(ChartDataEntry(x: Double(max-sumDeltas), y: Double(self.valuesList.object(at: idx) as! Int)))
+            }
+        }
+        let dataSet = LineChartDataSet(values: lineChartEntry.reversed(), label: nil)
+        dataSet.colors = [NSUIColor.blue]
+        dataSet.mode = LineChartDataSet.Mode.cubicBezier;
+        dataSet.drawCircleHoleEnabled = false
+        dataSet.circleRadius=2.0
+        dataSet.drawValuesEnabled = false
+        dataSet.circleColors = [NSUIColor.red]
+        let data = LineChartData()
+        data.addDataSet(dataSet)
+        
+        self.lineChart.data = data
+        self.lineChart?.chartDescription?.text = "Photoresistor Values"
+        self.lineChart.notifyDataSetChanged()
     }
     
 
