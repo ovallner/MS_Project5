@@ -14,9 +14,12 @@
 		55CF96D71FA18AFC00F306D6 /* BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF96D61FA18AFC00F306D6 /* BLE.swift */; };
 		55CF96D91FA18D0D00F306D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55CF96D81FA18D0D00F306D6 /* Main.storyboard */; };
 		55CF96DB1FA18DEA00F306D6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF96DA1FA18DEA00F306D6 /* TableViewController.swift */; };
+		BD11794E078891154B7B6D70 /* Pods_BluetoothArduinoSensing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A92C05DE8C14524FCFBE728 /* Pods_BluetoothArduinoSensing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AE59AC0233C0B26CFB9DCD9 /* Pods-BluetoothArduinoSensing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothArduinoSensing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothArduinoSensing/Pods-BluetoothArduinoSensing.debug.xcconfig"; sourceTree = "<group>"; };
+		3E784CC3FD8D223569BCF0DA /* Pods-BluetoothArduinoSensing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothArduinoSensing.release.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothArduinoSensing/Pods-BluetoothArduinoSensing.release.xcconfig"; sourceTree = "<group>"; };
 		55CF96C11FA1865300F306D6 /* BluetoothArduinoSensing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothArduinoSensing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55CF96C41FA1865300F306D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55CF96C61FA1865300F306D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		55CF96D61FA18AFC00F306D6 /* BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLE.swift; sourceTree = "<group>"; };
 		55CF96D81FA18D0D00F306D6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		55CF96DA1FA18DEA00F306D6 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		7A92C05DE8C14524FCFBE728 /* Pods_BluetoothArduinoSensing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BluetoothArduinoSensing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD11794E078891154B7B6D70 /* Pods_BluetoothArduinoSensing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				55CF96C31FA1865300F306D6 /* BluetoothArduinoSensing */,
 				55CF96C21FA1865300F306D6 /* Products */,
+				9392FFEA3397D97C1F58ECF1 /* Pods */,
+				5E2510C14E73D5B31E14746A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +77,23 @@
 			path = BluetoothArduinoSensing;
 			sourceTree = "<group>";
 		};
+		5E2510C14E73D5B31E14746A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A92C05DE8C14524FCFBE728 /* Pods_BluetoothArduinoSensing.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9392FFEA3397D97C1F58ECF1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0AE59AC0233C0B26CFB9DCD9 /* Pods-BluetoothArduinoSensing.debug.xcconfig */,
+				3E784CC3FD8D223569BCF0DA /* Pods-BluetoothArduinoSensing.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55CF96D31FA1865300F306D6 /* Build configuration list for PBXNativeTarget "BluetoothArduinoSensing" */;
 			buildPhases = (
+				82D223869241CB086F215FB2 /* [CP] Check Pods Manifest.lock */,
 				55CF96BD1FA1865300F306D6 /* Sources */,
 				55CF96BE1FA1865300F306D6 /* Frameworks */,
 				55CF96BF1FA1865300F306D6 /* Resources */,
+				F10E7EE00A3BA6489FD654E2 /* [CP] Embed Pods Frameworks */,
+				6B65482500FE2227D837E791 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -136,6 +163,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6B65482500FE2227D837E791 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BluetoothArduinoSensing/Pods-BluetoothArduinoSensing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82D223869241CB086F215FB2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BluetoothArduinoSensing-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F10E7EE00A3BA6489FD654E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BluetoothArduinoSensing/Pods-BluetoothArduinoSensing-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BluetoothArduinoSensing/Pods-BluetoothArduinoSensing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		55CF96BD1FA1865300F306D6 /* Sources */ = {
@@ -272,6 +353,7 @@
 		};
 		55CF96D41FA1865300F306D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AE59AC0233C0B26CFB9DCD9 /* Pods-BluetoothArduinoSensing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +369,7 @@
 		};
 		55CF96D51FA1865300F306D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E784CC3FD8D223569BCF0DA /* Pods-BluetoothArduinoSensing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
