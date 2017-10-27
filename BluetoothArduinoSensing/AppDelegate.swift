@@ -15,11 +15,10 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, BLEDelegate {
     
-    var bleShield = BLE()
+    lazy var bleShield = BLE()
     
     // MARK: BLE Delegates Functions
     func bleDidUpdateState() {
-        // currently unused
     }
     
     func bleDidConnectToPeripheral() {
